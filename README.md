@@ -30,6 +30,12 @@ Install the requirements
 pip install -r requirements.txt
 ```
 
+Create the file .env
+
++ Now! Stop! We need copy the file .env.example and rename to .env,
+and add change the values of variables correspondents to the credentials,
+for more information check the [File of Variables](#file-of-variables).
+
 Run the project
 ```bash
 uvicorn src.main:app --reload
@@ -62,6 +68,18 @@ Execute the command for run the tests
 ```bash
 pytest
 ```
+
+### File of Variables
+In this file `.env`, we will define the variables of credentials, and 
+we can change from environment to environment. Obviously, is private!
+
+#### Fundamentals Global Variables
++ APP_ENV = Define the environment of project (sandbox, dev, prod).
++ PATH_CONFIG_YAML = Default 'src/core/config.yaml'. Change if you need.
+
+#### Fundamentals Environment Variables
++ DOMAIN = Define the domain of project. (Default: '127.0.0.1').
++ BELVO_URL = Define the url of Belvo API. (Defaults are configured).
 
 <br>
 
