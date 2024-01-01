@@ -4,11 +4,42 @@ A FastAPI project for managing financial data from Belvo's API.
 The list of specifications is in the [Technical Test](.github/fordevs/TechnicalTest.md) file.
 
 | [Installation](#installation)
+| [DesignPattern](#design-pattern)
 | [ProjectActionPlan](#project-action-plan)
 | [ExtraTools](#extratools) |
 
 ## Installation
 TODO!
+
+<br>
+
+## Design Pattern
+The project will be developed with the design pattern of units of work,
+and the architecture will divide into the nexts three 'layers':
+
+### Presentation Layer
+Manage the interactions with the user (or client system) through the API.
+Here, the routes and endpoints are defined. Handles requests and responses.
++ `src/api/`    | Structure of API, init and global configs.
++ `src/api/v1/` | Manage the routes and endpoints of API.
+
+### Business Logic Layer
+Manage the business logic of the application, and the validation of input 
+and output data. Here, the ORM models are defined.
++ `src/models/` | Contains the ORM models, represent the database relations.
++ `src/schemas/`| Define the schemas for validate the input and output data.
+
+### Data Access Layer
+Manage the database connections and transactions. Here, the configuration
+and sessions are defined. Following the ACID properties.
++ `src/core/database.py` | Gest the database connection and sessions.
+
+### Others Inside Features
++ `src/core/auth.py`    | Auth JWT for API.
++ `src/core/config.py`  | Config and Variables.
++ `src/core/errors.py`  | Standard custom errors.
++ `src/utils/`          | Auxiliary functions.    
++ `tests/`              | Unit and Integration Tests.
 
 <br>
 
@@ -92,6 +123,7 @@ Tree of Project
 tree -I "env|.git|.pytest_cache|__pycache__" -la
 ```
 
-For more information about Belvo API, can read the [Belvo's Docs](.github/fordevs/BelvoDocs.md).
+For more information about Belvo API, can read 
+the [Belvo's Docs](.github/fordevs/BelvoDocs.md).
 
 ### END!
