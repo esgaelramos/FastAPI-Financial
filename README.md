@@ -240,4 +240,3 @@ For more information about Belvo API, can read
 the [Belvo's Docs](.github/fordevs/BelvoDocs.md).
 
 ### END!
-# HAPPY 2024!
