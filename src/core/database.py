@@ -3,7 +3,7 @@
 from contextlib import contextmanager
 
 from sqlalchemy import create_engine, text
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, declarative_base
 
 
 class Database:
@@ -30,3 +30,6 @@ class Database:
         with self.get_session() as session:
             session.execute(text(query))
             session.commit()
+
+
+Base = declarative_base()
