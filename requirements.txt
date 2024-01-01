@@ -6,6 +6,7 @@ python-decouple
 
 # for business logic
 pydantic
+pydantic[email]
 sqlalchemy
 
 # for database

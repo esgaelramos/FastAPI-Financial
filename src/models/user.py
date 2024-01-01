@@ -1,7 +1,7 @@
 """Models for the User Table in the DataBase."""
 
 from sqlalchemy import Column, Integer, String
-from core.database import Base
+from src.core.database import Base
 
 
 class User(Base):

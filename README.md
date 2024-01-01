@@ -31,6 +31,16 @@ Install the requirements
 pip install -r requirements.txt
 ```
 
+Create the database in MySQL
+```bash
+mysql -u root -p
+```
+
+Inside of execute the sql:
+```sql
+CREATE DATABASE fastapi_financial;
+```
+
 Create the file .env
 
 + Now! Stop! We need copy the file .env.example and rename to .env,

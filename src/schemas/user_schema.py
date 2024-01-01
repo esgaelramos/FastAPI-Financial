@@ -1,4 +1,4 @@
-"""Schema for Validating User Data."""
+"""Schemas for Validating User Data."""
 
 from pydantic import BaseModel, EmailStr
 
