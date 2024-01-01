@@ -3,16 +3,25 @@ fastapi
 uvicorn[standard]
 pyyaml
 python-decouple
+
 # for business logic
 pydantic
 sqlalchemy
+
 # for database
 alembic
+pymysql
+
+# for authentication
+passlib[bcrypt]
+python-jose[cryptography]
+
 # for linting
 pre-commit
 flake8
 flake8-docstrings
 flake8-import-order
+
 # for testing
 httpx
 pytest

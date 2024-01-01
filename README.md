@@ -117,6 +117,7 @@ we can change from environment to environment. Obviously, is private!
 
 #### Fundamentals Environment Variables
 + DOMAIN = Define the domain of project. (Default: '127.0.0.1').
++ DATABASE_URL = Define the url of database. (Default: MySQL).
 + BELVO_URL = Define the url of Belvo API. (Defaults are configured).
 + BELVO_SECRET_ID = Generate in 
 [Belvo's APIs Dashboard](https://dashboard.belvo.com/sandbox/api-keys/).
