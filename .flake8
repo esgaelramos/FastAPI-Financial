@@ -1,0 +1,9 @@
+[flake8]
+max-line-length = 88
+exclude = env/*
+ignore = E203, W503
+import-order-style = pep8
+
+# exclude rules not pep8 compatible
+# E203: whitespace before ':'
+# W503: line break before binary operator
