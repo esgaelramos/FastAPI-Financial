@@ -5,6 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from .core.config import AppConfig
 from .core.database import Database
+from .api.v1.routes import router as v1_router
 
 
 # Load the application configuration
@@ -26,7 +27,4 @@ app.add_middleware(
 )
 
 
-@app.get("/")
-async def hello_world():
-    """Hello World EndPoint."""
-    return {"from Hello World": "to FastAPI-Financial"}
+app.include_router(v1_router, prefix="/v1")
