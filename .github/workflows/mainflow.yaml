@@ -39,7 +39,7 @@ jobs:
 
 
   deploy_production:
-    # needs: [test]
+    needs: [pre-commit, test]
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
 

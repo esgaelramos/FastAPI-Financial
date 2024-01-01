@@ -24,7 +24,9 @@ class AppConfig:
 
     def _load_config(self):
         """Load the application configuration from a YAML file."""
-        path_config_yaml = config('PATH_CONFIG_YAML', default='config.yaml')
+        path_config_yaml = config(
+            'PATH_CONFIG_YAML', default='src/core/config.yaml'
+        )
         env = config('APP_ENV', default='sandbox')
 
         with open(path_config_yaml, "r") as file:
