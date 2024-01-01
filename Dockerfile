@@ -11,7 +11,7 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 # Copy the rest of the source code into the container
-COPY src/ /app/
+COPY src/ ./src/
 
 # Execute the application with uvicorn
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8038"]
+CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8038"]

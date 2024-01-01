@@ -8,4 +8,4 @@ services:
     environment:
       - APP_ENV=sandbox
     volumes:
-      - ./src:/app
+      - ./src:/app/src
