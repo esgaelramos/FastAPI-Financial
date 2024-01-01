@@ -118,6 +118,10 @@ we can change from environment to environment. Obviously, is private!
 #### Fundamentals Environment Variables
 + DOMAIN = Define the domain of project. (Default: '127.0.0.1').
 + BELVO_URL = Define the url of Belvo API. (Defaults are configured).
++ BELVO_SECRET_ID = Generate in 
+[Belvo's APIs Dashboard](https://dashboard.belvo.com/sandbox/api-keys/).
++ BELVO_SECRET_PASSWORD = Generate in 
+[Belvo's APIs Dashboard](https://dashboard.belvo.com/sandbox/api-keys/).
 
 <br>
 
@@ -236,3 +240,4 @@ For more information about Belvo API, can read
 the [Belvo's Docs](.github/fordevs/BelvoDocs.md).
 
 ### END!
+# HAPPY 2024!
