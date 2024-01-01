@@ -163,7 +163,7 @@ A list of tasks to complete the project.
 - [X] ~~Create a GitHub repository.~~
 - [X] ~~Create and register credentials for Belvo.~~
 - [ ] Read, understand, and implement Belvo's documentation.
-- [ ] Take notes from Belvo's documentation.
+- [X] ~~Take notes from Belvo's documentation.~~
 
 ### Project Architecture and Patterns Definition
 - [ ] ~~Define the project's architecture and patterns.~~
@@ -174,9 +174,9 @@ A list of tasks to complete the project.
     + ~~`src` and `tests`.~~
     + follow the pattern design
     + respect the architecture
-- [ ] ~~Initialize a project with FastAPI.~~
-- [ ] ~~Create a Dockerfile for Python.~~
-- [ ] ~~Create a docker-compose file.~~
+- [X] ~~Initialize a project with FastAPI.~~
+- [X] ~~Create a Dockerfile for Python.~~
+- [X] ~~Create a docker-compose file.~~
 - *[ ] Add a MySQL database (optional) in docker-compose.*
 
 ### Management of Credentials and Environment Variables
@@ -192,7 +192,7 @@ A list of tasks to complete the project.
 ### Continuous Integration and Deployment
 - [X] ~~Configure linter in GitHub Actions.~~
 - [X] ~~Configure pytest in GitHub Actions.~~
-- [ ] Consider automatic deployment configuration in GitHub Actions.
+- [X] ~~Consider automatic deployment configuration in GitHub Actions.~~
 
 ### API and Database Development
 - [ ] Design database models for users, transactions, and categories.
@@ -219,13 +219,13 @@ A list of tasks to complete the project.
 - [ ] Include usage guides and local deployment in the README.
 
 ### Deployment and Delivery
-- [ ] Clone project in server.
-- [ ] Configure server for production.
-- [ ] Create service linux for project.
-- [ ] Configure gunicorn for project.
-- [ ] Create subdomain and configure DNS.
-- [ ] Configure nginx like reverse proxy.
-- [ ] Configure SSL certificate (certbot).
+- [X] ~~Clone project in server.~~
+- [X] ~~Configure server for production.~~
+- [X] ~~Create service linux for project.~~
+- [X] ~~Configure gunicorn for project.~~
+- [X] ~~Create subdomain and configure DNS.~~
+- [X] ~~Configure nginx like reverse proxy.~~
+- [X] ~~Configure SSL certificate (certbot).~~
 - [ ] Test and validate finished project.
 
 <br>
