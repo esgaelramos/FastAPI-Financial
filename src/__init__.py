@@ -1,1 +1,1 @@
-"""Init src Module for Core Package."""
+"""Init src Module for SRC Package."""
