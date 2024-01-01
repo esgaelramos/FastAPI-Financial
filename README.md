@@ -5,10 +5,15 @@ The list of specifications is in the [Technical Test](.github/fordevs/TechnicalT
 
 | [Installation](#installation)
 | [DesignPattern](#design-pattern)
+| [ForDevelopers](#fordevelopers)
 | [ProjectActionPlan](#project-action-plan)
 | [ExtraTools](#extratools) |
 
 ## Installation
+
+The project will be developed with the nexts versions:
++ Python 3.10
++ MySQL 8.0
 
 Create a virtual environment
 ```bash
@@ -28,6 +33,34 @@ pip install -r requirements.txt
 Run the project
 ```bash
 uvicorn src.main:app --reload
+```
+
+<br>
+
+## ForDevelopers
+
+For follow and respect a code style, will be used the nexts tools:
+
++ Linter
+
+The linter will be used for check the code style and syntax errors. 
+With the [pre-commit](https://pre-commit.com/) and 
+[flake8](https://flake8.pycqa.org/en/latest/).
+
+Execute the command for lint the code
+```bash
+pre-commit run --all-files
+```
+
++ Testing
+
+The tests will be used for check the code logic and errors.
+With [pytest](https://docs.pytest.org/) create the unit and 
+integration features tests.
+
+Execute the command for run the tests
+```bash
+pytest
 ```
 
 <br>
