@@ -1,0 +1,18 @@
+# for presentation
+fastapi
+uvicorn[standard]
+pyyaml
+python-decouple
+# for business logic
+pydantic
+sqlalchemy
+# for database
+alembic
+# for linting
+pre-commit
+flake8
+flake8-docstrings
+flake8-import-order
+# for testing
+pytest
+pytest-cov
