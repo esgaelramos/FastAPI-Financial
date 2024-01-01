@@ -9,7 +9,26 @@ The list of specifications is in the [Technical Test](.github/fordevs/TechnicalT
 | [ExtraTools](#extratools) |
 
 ## Installation
-TODO!
+
+Create a virtual environment
+```bash
+python3 -m venv env
+```
+
+Activate the virtual environment
+```bash
+source env/bin/activate
+```
+
+Install the requirements
+```bash
+pip install -r requirements.txt
+```
+
+Run the project
+```bash
+uvicorn src.main:app --reload
+```
 
 <br>
 
@@ -54,14 +73,15 @@ A list of tasks to complete the project.
 - [ ] Take notes from Belvo's documentation.
 
 ### Project Architecture and Patterns Definition
-- [ ] Define the project's architecture and patterns.
+- [ ] ~~Define the project's architecture and patterns.~~
+- [ ] ~~META Create a project action plan META.~~
 
 ### Project Structure
 - [ ] Create project structure: 
     + `src` and `tests`.
     + follow the pattern design
     + respect the architecture
-- [ ] Initialize a project with FastAPI.
+- [ ] ~~Initialize a project with FastAPI.~~
 - [ ] Create a Dockerfile for Python.
 - [ ] Create a docker-compose file.
 - *[ ] Add a MySQL database (optional) in docker-compose.*
