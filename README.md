@@ -18,7 +18,7 @@ A list of tasks to complete the project.
 
 ### Preliminaries
 - [X] ~~Create a GitHub repository.~~
-- [ ] Create and register credentials for Belvo.
+- [X] ~~Create and register credentials for Belvo.~~
 - [ ] Read, understand, and implement Belvo's documentation.
 - [ ] Take notes from Belvo's documentation.
 
@@ -91,5 +91,7 @@ Tree of Project
 ```bash
 tree -I "env|.git|.pytest_cache|__pycache__" -la
 ```
+
+For more information about Belvo API, can read the [Belvo's Docs](.github/fordevs/BelvoDocs.md).
 
 ### END!
