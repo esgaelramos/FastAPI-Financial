@@ -4,6 +4,7 @@ A FastAPI project for managing financial data from Belvo's API.
 The list of specifications is in the [Technical Test](.github/fordevs/TechnicalTest.md) file.
 
 | [Installation](#installation)
+| [InstallDocker](#installation-docker)
 | [DesignPattern](#design-pattern)
 | [ForDevelopers](#fordevelopers)
 | [ProjectActionPlan](#project-action-plan)
@@ -39,6 +40,43 @@ for more information check the [File of Variables](#file-of-variables).
 Run the project
 ```bash
 uvicorn src.main:app --reload
+```
+
+<br>
+
+## Installation Docker
+
+If you want to run the project with Docker, you need to install Docker and
+Docker Compose, and follow the nexts steps:
+
+Build the image
+```bash
+docker-compose build
+```
+
+Run the project in background
+```bash
+docker-compose up -d
+```
+
+Enter to the container
+```bash
+docker-compose exec api bash
+```
+
+Status of containers
+```bash
+docker-compose ps
+```
+
+Restart the project
+```bash
+docker-compose restart
+```
+
+Stop the project
+```bash
+docker-compose down
 ```
 
 <br>
@@ -129,27 +167,27 @@ A list of tasks to complete the project.
 
 ### Project Structure
 - [ ] Create project structure: 
-    + `src` and `tests`.
+    + ~~`src` and `tests`.~~
     + follow the pattern design
     + respect the architecture
 - [ ] ~~Initialize a project with FastAPI.~~
-- [ ] Create a Dockerfile for Python.
-- [ ] Create a docker-compose file.
+- [ ] ~~Create a Dockerfile for Python.~~
+- [ ] ~~Create a docker-compose file.~~
 - *[ ] Add a MySQL database (optional) in docker-compose.*
 
 ### Management of Credentials and Environment Variables
-- [ ] Create logic to handle credentials.
-- [ ] Create logic to handle environment variables.
+- [ ] ~~Create logic to handle credentials.~~
+- [ ] ~~Create logic to handle environment variables.~~
     + Test use of three environments (from Belvo's docs)
 - [ ] Docs for manage credentials in repository.
 
 ### Development and Code Quality Tools
-- [ ] Add a linter (pre-commit and flake8).
-- [ ] Add pytest for local testing.
+- [X] ~~Add a linter (pre-commit and flake8).~~
+- [X] ~~Add pytest for local testing.~~
 
 ### Continuous Integration and Deployment
-- [ ] Configure linter in GitHub Actions.
-- [ ] Configure pytest in GitHub Actions.
+- [X] ~~Configure linter in GitHub Actions.~~
+- [X] ~~Configure pytest in GitHub Actions.~~
 - [ ] Consider automatic deployment configuration in GitHub Actions.
 
 ### API and Database Development

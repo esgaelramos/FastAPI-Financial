@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    ports:
+      - "8038:8038"
+    environment:
+      - APP_ENV=sandbox
+    volumes:
+      - ./src:/app
