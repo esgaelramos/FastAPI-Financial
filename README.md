@@ -177,8 +177,8 @@ A list of tasks to complete the project.
 - [X] ~~Take notes from Belvo's documentation.~~
 
 ### Project Architecture and Patterns Definition
-- [ ] ~~Define the project's architecture and patterns.~~
-- [ ] ~~META Create a project action plan META.~~
+- [X] ~~Define the project's architecture and patterns.~~
+- [X] ~~META Create a project action plan META.~~
 
 ### Project Structure
 - [ ] Create project structure: 
@@ -191,10 +191,10 @@ A list of tasks to complete the project.
 - *[ ] Add a MySQL database (optional) in docker-compose.*
 
 ### Management of Credentials and Environment Variables
-- [ ] ~~Create logic to handle credentials.~~
-- [ ] ~~Create logic to handle environment variables.~~
+- [X] ~~Create logic to handle credentials.~~
+- [X] ~~Create logic to handle environment variables.~~
     + Test use of three environments (from Belvo's docs)
-- [ ] Docs for manage credentials in repository.
+- [X] ~~Docs for manage credentials in repository.~~
 
 ### Development and Code Quality Tools
 - [X] ~~Add a linter (pre-commit and flake8).~~
@@ -244,7 +244,7 @@ A list of tasks to complete the project.
 ## ExtraTools
 Tree of Project
 ```bash
-tree -I "env|.git|.pytest_cache|__pycache__" -la
+tree -I "env|.git|.pytest_cache|__pycache__|.coverage" -la
 ```
 
 For more information about Belvo API, can read 
