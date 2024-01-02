@@ -44,3 +44,19 @@ class AppConfig:
             Dict[str, str]: A dictionary with the application configuration.
         """
         return self.env_config
+
+
+class Settings:
+    """Class `Settings` for provide the application configuration."""
+
+    def __init__(self):
+        """Init the application configuration."""
+        self.app_config = AppConfig().config
+
+    def __getattr__(self, name):  # pragma: no cover
+        """Get the application configuration attribute."""
+        return self.app_config.get(name, None)
+
+    def __getitem__(self, name):  # pragma: no cover
+        """Get the application configuration item."""
+        return self.app_config.get(name, None)

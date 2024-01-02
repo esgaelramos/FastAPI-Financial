@@ -1,11 +1,9 @@
 """Tests for the DataBase Module."""
 
 import unittest
-from unittest.mock import (
-    ANY, MagicMock, patch, call
-)
+from unittest.mock import MagicMock, patch
 
-from src.core.database import Database
+from src.core.database import create_engine_with_fallback, get_session
 
 
 class TestDatabase(unittest.TestCase):
@@ -18,39 +16,38 @@ class TestDatabase(unittest.TestCase):
         self.database_url = 'sqlite:///:memory:'
         self.mock_engine = mock_create_engine.return_value
         self.mock_sessionmaker = mock_sessionmaker
-        self.db = Database(self.database_url)
+        self.db = create_engine_with_fallback(self.database_url)
 
-    def test_init(self):
-        """Test initialization of Database class."""
-        self.mock_sessionmaker.assert_called_with(
-            autocommit=False, autoflush=False, bind=self.mock_engine
-        )
+    @patch('src.core.database.create_engine')
+    def test_create_engine_with_fallback(self, mock_create_engine):
+        """Test create_engine_with_fallback function."""
+        # Simula la creación exitosa del motor de la base de datos
+        mock_create_engine.return_value = MagicMock()
 
-    @patch('src.core.database.sessionmaker')
-    def test_get_session(self, mock_sessionmaker):
-        """Test the get_session method of Database class."""
-        mock_session_class = MagicMock()
-        mock_sessionmaker.return_value = mock_session_class
-        mock_session = mock_session_class.return_value
+        # Llama a la función con un URL de base de datos
+        engine = create_engine_with_fallback(self.database_url)
 
-        db = Database(self.database_url)
+        # Verifica que create_engine fue llamado con el URL correcto
+        mock_create_engine.assert_called_once_with(self.database_url)
+        self.assertIsNotNone(engine)
 
-        with db.get_session() as session:
-            self.assertEqual(session, mock_session)
-
-        mock_session_class.assert_called_once()
-        mock_session.close.assert_called_once()
-
-    @patch('src.core.database.Database.get_session')
-    def test_execute(self, mock_get_session):
-        """Test execute method of Database class."""
+    @patch('src.core.database.default_session')
+    def test_get_session(self, mock_default_session):
+        """Test the get_session method."""
         mock_session = MagicMock()
-        mock_get_session.return_value.__enter__.return_value = mock_session
+        mock_default_session.return_value = mock_session
 
-        query = "CREATE TABLE test_table (id INTEGER PRIMARY KEY)"
-        self.db.execute(query)
+        # Obtén el generador de sesión
+        session_gen = get_session()
 
-        mock_session.assert_has_calls([
-            call.execute(ANY),
-            call.commit()
-        ])
+        # Emula el comportamiento de entrar y salir del contexto
+        session = next(session_gen)
+        self.assertEqual(session, mock_session)
+
+        try:
+            next(session_gen)
+        except StopIteration:
+            pass
+
+        # Verifica que la sesión se cerró correctamente
+        mock_session.close.assert_called_once()

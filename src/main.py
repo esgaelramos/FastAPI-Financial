@@ -7,7 +7,7 @@ from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 
 from .core.config import AppConfig
-from .core.database import Database
+from .core.database import init_db
 from .api.v1.routes import router as v1_router
 from .schemas.responses_schema import ErrorResponse
 
@@ -22,13 +22,8 @@ logging.basicConfig(
 # Load the application configuration
 app_config = AppConfig().config
 
-# Create the database engine connection
-try:
-    database = Database(app_config['DATABASE_URL'])
-    logging.info('Database connection established.')
-except Exception:  # pragma: no cover
-    database = Database('sqlite:///:memory:')
-    logging.warning('Database connection failed. Using in-memory database.')
+# Initialize the database
+init_db()
 
 # Init the FastAPI application
 app = FastAPI()
@@ -42,7 +37,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
+# Register the API routers (for versions)
 app.include_router(v1_router, prefix="/v1")
 
 
@@ -52,7 +47,7 @@ async def exception_handler(request, exc):
     """Handle Exceptions with custom Response."""
     logging.error(exc.detail)
     return JSONResponse(
-        status_code=500,
+        status_code=exc.status_code,
         content=ErrorResponse(
             success=False,
             message=exc.detail,
