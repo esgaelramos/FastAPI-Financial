@@ -35,11 +35,9 @@ def test_user_response_validation():
     - Check for the valid data
     """
     data = {
-        "id": 1,
         "username": "user",
         "email": "user@example.com",
     }
     user_response = UserResponse(**data)
-    assert user_response.id == data["id"]
     assert user_response.username == data["username"]
     assert user_response.email == data["email"]
