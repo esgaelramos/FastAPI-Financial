@@ -2,12 +2,14 @@
 
 import logging
 
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
+from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 
 from .core.config import AppConfig
 from .core.database import Database
 from .api.v1.routes import router as v1_router
+from .schemas.responses_schema import ErrorResponse
 
 
 # Configure logging
@@ -21,10 +23,10 @@ logging.basicConfig(
 app_config = AppConfig().config
 
 # Create the database engine connection
-try:  # pragma: no cover
-    database = Database(app_config['DATABASE_URsL'])
+try:
+    database = Database(app_config['DATABASE_URL'])
     logging.info('Database connection established.')
-except KeyError:
+except Exception:  # pragma: no cover
     database = Database('sqlite:///:memory:')
     logging.warning('Database connection failed. Using in-memory database.')
 
@@ -42,3 +44,17 @@ app.add_middleware(
 
 
 app.include_router(v1_router, prefix="/v1")
+
+
+# Handle Exceptions with custom Response
+@app.exception_handler(HTTPException)
+async def exception_handler(request, exc):
+    """Handle Exceptions with custom Response."""
+    logging.error(exc.detail)
+    return JSONResponse(
+        status_code=500,
+        content=ErrorResponse(
+            success=False,
+            message=exc.detail,
+        ).model_dump()
+    )

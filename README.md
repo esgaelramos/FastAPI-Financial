@@ -160,9 +160,9 @@ and sessions are defined. Following the ACID properties.
 ### Others Inside Features
 + `src/core/auth.py`    | Auth JWT for API.
 + `src/core/config.py`  | Config and Variables.
-+ `src/core/errors.py`  | Standard custom errors.
-+ `src/utils/`          | Auxiliary functions.    
-+ `tests/`              | Unit and Integration Tests.
++ `src/utils/util_any`  | Auxiliary functions.    
++ `tests/test_any`      | Unit and Integration Tests.
++ `respones_schems.py`  | Standard custom responses.
 
 <br>
 
