@@ -59,6 +59,11 @@ uvicorn src.main:app --reload
 If you want to run the project with Docker, you need to install Docker and
 Docker Compose, and follow the nexts steps:
 
+Update the db url in the `.env` file
+```bash
+DATABASE_URL_SANDBOX='mysql+pymysql://root:root@db:3306/fastapi_financial'
+```
+
 Build the image
 ```bash
 docker-compose build

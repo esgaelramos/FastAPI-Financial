@@ -9,3 +9,18 @@ services:
       - APP_ENV=sandbox
     volumes:
       - ./src:/app/src
+
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: fastapi_financial
+      DATABASE_URL_SANDBOX: 'mysql+pymysql://root:root@db:3306/fastapi_financial'
+      DATABASE_URL_DEV: 'mysql+pymysql://root:root@db:3306/fastapi_financial'
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
