@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 
 from decouple import config
 from fastapi import HTTPException
+from fastapi.security import OAuth2PasswordBearer
 from jose import jwt, JWTError
 from sqlalchemy.orm import Session
 from passlib.context import CryptContext
@@ -55,6 +56,7 @@ class AuthHandler:
 
 # Create an instance of the class
 auth = AuthHandler()
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 
 def get_user_by_username(username: str, db: Session) -> User:
@@ -139,4 +141,29 @@ def authenticate_user(username: str, password: str, db: Session) -> User:
         raise HTTPException(
             status_code=401, detail="Incorrect username or password"
         )
+    return user
+
+
+def get_current_user(token: str, db: Session) -> User:
+    """Get the current user from the database.
+
+    Args:
+        token (str): JWT Token.
+        db (Session): Database Session.
+
+    Returns:
+        User: Model User.
+    """
+    payload = auth.decode_access_token(token)
+    if payload is None:
+        raise HTTPException(status_code=401, detail="Invalid token")
+
+    username: str = payload.get("sub")
+    if username is None:
+        raise HTTPException(status_code=401, detail="Invalid token")
+
+    user = db.query(User).filter(User.username == username).first()
+    if user is None:
+        raise HTTPException(status_code=404, detail="User not found")
+
     return user
