@@ -3,6 +3,7 @@
 import logging
 
 from sqlalchemy import create_engine
+from sqlalchemy.pool import StaticPool
 from sqlalchemy.orm import sessionmaker, scoped_session, declarative_base
 from src.core.config import Settings
 
@@ -13,12 +14,18 @@ settings = Settings()
 
 def create_engine_with_fallback(database_url: str):
     """Create the database engine or fallback to SQLite."""
+    connect_args = {}
     try:
         logging.info(f"Connecting to the database {database_url}")
         return create_engine(database_url)
     except Exception as e:  # pragma: no cover
         logging.warning(f"Database connection FAIL: {e}. Using db in-memory.")
-        return create_engine('sqlite:///:memory:')
+        connect_args["check_same_thread"] = False
+        return create_engine(
+            'sqlite:///:memory:',
+            poolclass=StaticPool,
+            connect_args=connect_args
+        )
 
 
 # Create the database engine or fallback to SQLite

@@ -14,12 +14,25 @@ client = TestClient(app)
 @pytest.fixture(scope="function")
 def setup_and_teardown_db():
     """Fixture to create and drop database tables."""
+    # Create all tables
     Base.metadata.create_all(bind=engine)
     yield
+    # Drop all tables
     Base.metadata.drop_all(bind=engine)
 
 
-def test_register_user():
+def create_test_user():
+    """Create a test user."""
+    client.post(
+        "/v1/auth/register",
+        json={
+            "username": "testuser", "password": "password",
+            "email": "testuser@example.com",
+        }
+    )
+
+
+def test_register_user(setup_and_teardown_db):
     """Test to EndPoint `register` for user registration."""
     unique_username = f"user_{uuid.uuid4()}"
     response = client.post(
@@ -33,8 +46,9 @@ def test_register_user():
     assert "access_token" in response.json()
 
 
-def test_login_user():
+def test_login_user(setup_and_teardown_db):
     """Test to EndPoint `login` for user login."""
+    create_test_user()
     response = client.post(
         "/v1/auth/login",
         json={
@@ -46,8 +60,9 @@ def test_login_user():
     assert "access_token" in response.json()
 
 
-def test_token_user():
+def test_token_user(setup_and_teardown_db):
     """Test to EndPoint `token` for user token."""
+    create_test_user()
     response = client.post(
         "/v1/auth/token",
         data={"username": "testuser", "password": "password"}
@@ -56,8 +71,9 @@ def test_token_user():
     assert "access_token" in response.json()
 
 
-def test_login_and_read_current_user():
+def test_login_and_read_current_user(setup_and_teardown_db):
     """Test to EndPoint `users/me` for read current user."""
+    create_test_user()
     login_response = client.post(
         "/v1/auth/login",
         json={
@@ -76,8 +92,9 @@ def test_login_and_read_current_user():
     assert "username" in response.json()
 
 
-def test_need_auth_with_login():
+def test_need_auth_with_login(setup_and_teardown_db):
     """Test to EndPoint `need-auth` Auth for access to need auth."""
+    create_test_user()
     login_response = client.post(
         "/v1/auth/login",
         json={
@@ -96,7 +113,7 @@ def test_need_auth_with_login():
     assert "success" in response.json()
 
 
-def test_need_auth_without_login():
+def test_need_auth_without_login(setup_and_teardown_db):
     """Test to EndPoint `need-auth` NoAuth for access to need auth."""
     response = client.get("/v1/auth/need-auth")
     expected_json = {'message': 'Not authenticated', 'success': False}
