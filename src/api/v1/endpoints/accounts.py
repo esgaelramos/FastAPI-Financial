@@ -1,7 +1,10 @@
 """EndPoints for Auth Accounts."""""
 
-from fastapi import APIRouter, Depends
+from typing import Annotated
+
+from fastapi import APIRouter, HTTPException, Depends
 from sqlalchemy.orm import Session
+from fastapi.security import OAuth2PasswordRequestForm
 from src.core.auth import (
     auth, oauth2_scheme,
     register_new_user, authenticate_user, get_current_user
@@ -9,6 +12,7 @@ from src.core.auth import (
 from src.schemas.user_schema import (
     UserRequest, UserResponse, UserTokenResponse
 )
+from src.schemas.responses_schema import SuccessResponse
 from src.core.database import get_session
 
 router = APIRouter()
@@ -49,6 +53,19 @@ async def login(user_credentials: UserRequest,
     )
 
 
+@router.post("/token")
+async def token(user_credentials: Annotated[OAuth2PasswordRequestForm, Depends()],  # noqa: E501
+                db: Session = Depends(get_session)):
+    """Get JWT Token Endpoint."""
+    user = authenticate_user(
+        user_credentials.username, user_credentials.password, db
+    )
+
+    access_token = auth.create_access_token(data={"sub": user.username})
+
+    return {"access_token": access_token, "token_type": "bearer"}
+
+
 @router.get("/users/me", response_model=UserResponse)
 async def read_current_user(db: Session = Depends(get_session),
                             token: str = Depends(oauth2_scheme)):
@@ -64,3 +81,14 @@ async def read_current_user(db: Session = Depends(get_session),
         username=user.username,
         email=user.email
     )
+
+
+@router.get("/need-auth", response_model=SuccessResponse)
+async def need_auth(db: Session = Depends(get_session),
+                    token: str = Depends(oauth2_scheme)):
+    """Need Auth for Access EndPoint."""
+    user = get_current_user(token, db)
+    if not user:
+        raise HTTPException(status_code=401, detail="Unauthorized")
+
+    return {"success": True, "data": {"message": "Authorized Access"}}

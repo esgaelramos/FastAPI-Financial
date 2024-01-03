@@ -56,7 +56,7 @@ class AuthHandler:
 
 # Create an instance of the class
 auth = AuthHandler()
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="v1/auth/token")
 
 
 def get_user_by_username(username: str, db: Session) -> User:

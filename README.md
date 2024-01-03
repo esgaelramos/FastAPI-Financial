@@ -193,12 +193,12 @@ A list of tasks to complete the project.
 - [X] ~~Initialize a project with FastAPI.~~
 - [X] ~~Create a Dockerfile for Python.~~
 - [X] ~~Create a docker-compose file.~~
-- *[ ] Add a MySQL database (optional) in docker-compose.*
+- [X] ~~Add a MySQL database (optional) in docker-compose.~~
 
 ### Management of Credentials and Environment Variables
 - [X] ~~Create logic to handle credentials.~~
 - [X] ~~Create logic to handle environment variables.~~
-    + Test use of three environments (from Belvo's docs)
+    + ~~Test use of three environments (from Belvo's docs)~~
 - [X] ~~Docs for manage credentials in repository.~~
 
 ### Development and Code Quality Tools
