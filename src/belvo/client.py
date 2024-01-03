@@ -24,9 +24,6 @@ class Client:
         Raises:
             BelvoException: If the login fails.
         """
-        if not url:
-            raise BelvoException("You need to provide a URL.")
-
         self.session = APISession(url)
 
         if not self.session.login(secret_key_id, secret_key_password):

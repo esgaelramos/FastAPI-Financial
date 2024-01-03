@@ -2,7 +2,7 @@
 
 from typing import Annotated
 
-from fastapi import APIRouter, HTTPException, Depends
+from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from fastapi.security import OAuth2PasswordRequestForm
 from src.core.auth import (
@@ -87,8 +87,4 @@ async def read_current_user(db: Session = Depends(get_session),
 async def need_auth(db: Session = Depends(get_session),
                     token: str = Depends(oauth2_scheme)):
     """Need Auth for Access EndPoint."""
-    user = get_current_user(token, db)
-    if not user:
-        raise HTTPException(status_code=401, detail="Unauthorized")
-
     return {"success": True, "data": {"message": "Authorized Access"}}

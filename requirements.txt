@@ -28,3 +28,5 @@ flake8-import-order
 httpx
 pytest
 pytest-cov
+pytest-responses
+responses
