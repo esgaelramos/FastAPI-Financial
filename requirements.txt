@@ -9,6 +9,7 @@ pydantic
 pydantic[email]
 sqlalchemy
 python-multipart
+requests
 
 # for database
 pymysql

@@ -255,4 +255,8 @@ tree -I "env|.git|.pytest_cache|__pycache__|.coverage" -la
 For more information about Belvo API, can read 
 the [Belvo's Docs](.github/fordevs/BelvoDocs.md).
 
+Thanks for this great full implementation of 
+[Python API Belvo](https://github.com/belvo-finance/belvo-python)
+all `/belvo/` code its a copy of this repository. 
+
 ### END!
