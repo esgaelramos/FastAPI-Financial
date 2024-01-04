@@ -8,6 +8,7 @@ from fastapi.testclient import TestClient
 from src.main import app
 from src.belvo.client import Client
 from src.belvo.http import APISession
+from src.belvo.instance import get_belvo_client
 
 client = TestClient(app)
 
@@ -88,7 +89,7 @@ def test_endpoint_link_get_http_error(mock_belvo_client_with_error):
     assert response.json()["message"] == "404: {'error': 'Not found'}"
 
 
-def test_endpoint_link_get_error():
+def test_endpoint_link_get_error(mock_belvo_client_with_error):
     """Test for getting Belvo Link by ID with error."""
     response = client.get("/v1/belvo/links", params={"id": "999"})
 
@@ -96,3 +97,13 @@ def test_endpoint_link_get_error():
     assert "success" in response.json()
     assert not response.json()["success"]
     assert "message" in response.json()
+
+
+# Tests for the `instance` Module for Injects:
+def test_belvo_client_instance_creation(mock_belvo_client):
+    """Test Belvo Client instance creation."""
+    try:
+        client = get_belvo_client()
+        assert isinstance(client, Client)
+    except Exception as e:
+        pytest.fail(f"Unexpected error occurred: {e}")
