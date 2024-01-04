@@ -3,7 +3,8 @@
 from fastapi import APIRouter
 
 from .endpoints import (
-    accounts, belvo_links, hello_world
+    accounts, belvo_links, belvo_owners,
+    hello_world
 )
 
 
@@ -19,4 +20,8 @@ router.include_router(
 
 router.include_router(
     belvo_links.router, prefix="/belvo", tags=["belvo_links"]
+)
+
+router.include_router(
+    belvo_owners.router, prefix="/belvo", tags=["belvo_owners"]
 )
