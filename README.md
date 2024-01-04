@@ -186,9 +186,9 @@ A list of tasks to complete the project.
 - [X] ~~META Create a project action plan META.~~
 
 ### Project Structure
-- [ ] Create project structure: 
+- [X] Create project structure: 
     + ~~`src` and `tests`.~~
-    + follow the pattern design
+    + ~~follow the pattern design~~
     + respect the architecture
 - [X] ~~Initialize a project with FastAPI.~~
 - [X] ~~Create a Dockerfile for Python.~~
@@ -212,18 +212,17 @@ A list of tasks to complete the project.
 
 ### API and Database Development
 - [ ] Design database models for users, transactions, and categories.
-- [ ] Implement authentication and session management.
+- [X] ~~Implement authentication and session management.~~
 - [ ] Develop endpoints for transaction lists, user listings, etc.
-- [ ] Integrate and test the connection with Belvo's API.
+- [X] ~~Integrate and test the connection with Belvo's API.~~
 - [ ] Implement logic for financial analysis (income and expenses).
 
 ### Optimization and Error Handling
-- [ ] Optimize database queries for high performance.
-- [ ] Implement robust and consistent error handling.
+- [X] ~~Implement consistent error handling.~~
 
 ### Testing and Validation
-- [ ] Develop unit and integration tests.
-- [ ] Validate input and output data in the API.
+- [X] ~~Develop unit and integration tests.~~
+- [X] ~~Validate input and output data in the API.~~
 
 ### Final Evaluation and Improvements
 - [ ] Review code scalability and readability.
@@ -231,8 +230,8 @@ A list of tasks to complete the project.
 - [ ] Refine and improve based on feedback or test results.
 
 ### Project Documentation
-- [ ] Document all development steps and project configurations.
-- [ ] Include usage guides and local deployment in the README.
+- [X] ~~Document all development steps and project configurations.~~
+- [X] ~~Include usage guides and local deployment in the README.~~
 
 ### Deployment and Delivery
 - [X] ~~Clone project in server.~~
