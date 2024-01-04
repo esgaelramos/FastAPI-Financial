@@ -2,7 +2,9 @@
 
 from fastapi import APIRouter
 
-from .endpoints import hello_world, accounts
+from .endpoints import (
+    accounts, belvo_links, hello_world
+)
 
 
 router = APIRouter()
@@ -13,4 +15,8 @@ router.include_router(
 
 router.include_router(
     accounts.router, prefix="/auth", tags=["auth_accounts"]
+)
+
+router.include_router(
+    belvo_links.router, prefix="/belvo", tags=["belvo_links"]
 )
