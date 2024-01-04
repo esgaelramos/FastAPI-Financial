@@ -6,7 +6,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 
-from .core.config import AppConfig
+from .core.config import Settings
 from .core.database import init_db
 from .api.v1.routes import router as v1_router
 from .schemas.responses_schema import ErrorResponse
@@ -19,11 +19,12 @@ logging.basicConfig(
     datefmt='%Y-%m-%d %H:%M:%S'
 )
 
-# Load the application configuration
-app_config = AppConfig().config
+# Load and Instance the Wrapper Settings
+settings = Settings()
 
 # Initialize the database
 init_db()
+
 
 # Init the FastAPI application
 app = FastAPI()
@@ -31,7 +32,7 @@ app = FastAPI()
 # Configure the application for FastAPI
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=app_config['DOMAIN'],
+    allow_origins=settings.DOMAIN,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

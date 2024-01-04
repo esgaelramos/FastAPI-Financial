@@ -227,8 +227,8 @@ A list of tasks to complete the project.
 - [X] ~~Validate input and output data in the API.~~
 
 ### Final Evaluation and Improvements
-- [ ] Review code scalability and readability.
-- [ ] Perform final tests of the complete application.
+- [X] ~~Review code scalability and readability.~~
+- [X] ~~Perform final tests of the complete application.~~
 - [ ] Refine and improve based on feedback or test results.
 
 ### Project Documentation
