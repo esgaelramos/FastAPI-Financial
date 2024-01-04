@@ -4,6 +4,9 @@ from typing import Optional
 
 from requests import HTTPError
 from fastapi import APIRouter, HTTPException, Depends
+from sqlalchemy.orm import Session
+from src.core.auth import oauth2_scheme
+from src.core.database import get_session
 from src.belvo.instance import get_belvo_client
 from src.schemas.responses_schema import SuccessResponse
 
@@ -13,7 +16,8 @@ router = APIRouter()
 
 @router.get("/accounts")
 async def get_belvo_accounts(
-    client = Depends(get_belvo_client), id: Optional[str] = None  # noqa: E251
+    id: Optional[str] = None, client = Depends(get_belvo_client),  # noqa: E251
+    db: Session = Depends(get_session), token: str = Depends(oauth2_scheme)
 ):
     """Get Belvo Accounts EndPoint. All Accounts or specific Account by ID."""
     try:

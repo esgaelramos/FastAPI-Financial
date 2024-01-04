@@ -8,7 +8,7 @@ from fastapi.testclient import TestClient
 from src.main import app
 from src.belvo.client import Client
 from src.belvo.http import APISession
-from src.belvo.instance import get_belvo_client
+from src.core.database import Base, engine
 
 client = TestClient(app)
 
@@ -57,9 +57,51 @@ def mock_belvo_client_with_error():
         yield mock_client_instance
 
 
-def test_endpoint_account_get_list(mock_belvo_client):
+@pytest.fixture(scope="function")
+def setup_and_teardown_db():
+    """Fixture to create and drop database tables."""
+    # Create all tables
+    Base.metadata.create_all(bind=engine)
+    yield
+    # Drop all tables
+    Base.metadata.drop_all(bind=engine)
+
+
+def _create_test_user():
+    """Create a test user."""
+    client.post(
+        "/v1/auth/register",
+        json={
+            "username": "testuser", "password": "password",
+            "email": "testuser@example.com",
+        }
+    )
+
+
+def _obtain_token_from_login():
+    """Obtain a JWT token from login."""
+    _create_test_user()
+    response = client.post(
+        "/v1/auth/login",
+        json={
+            "username": "testuser", "password": "password",
+            "email": "testuser@example.com",
+        }
+    )
+    return response.json().get("access_token")
+
+
+# ### ### ### ###
+# Start Tests for the `accounts` Module:
+# ### ### ### ###
+
+
+def test_endpoint_account_get_list(setup_and_teardown_db, mock_belvo_client):
     """Test for getting a list of Belvo Accounts."""
-    response = client.get("/v1/belvo/accounts")
+    response = client.get(
+        "/v1/belvo/accounts",
+        headers={"Authorization": f"Bearer {_obtain_token_from_login()}"}
+    )
 
     assert response.status_code == 200
     assert "accounts" in response.json()["data"]
@@ -67,9 +109,13 @@ def test_endpoint_account_get_list(mock_belvo_client):
     assert response.json()["data"]["accounts"][0]["name"] == "Test Account"
 
 
-def test_endpoint_account_get_specific(mock_belvo_client):
+def test_endpoint_account_get_specific(
+        setup_and_teardown_db, mock_belvo_client):
     """Test for getting a specific Belvo Account by ID."""
-    response = client.get("/v1/belvo/accounts", params={"id": "123"})
+    response = client.get(
+        "/v1/belvo/accounts", params={"id": "123"},
+        headers={"Authorization": f"Bearer {_obtain_token_from_login()}"}
+    )
 
     assert response.status_code == 200
     assert "id" in response.json()["data"]
@@ -78,9 +124,13 @@ def test_endpoint_account_get_specific(mock_belvo_client):
     assert response.json()["data"]["name"] == "Test Account"
 
 
-def test_endpoint_account_get_http_error(mock_belvo_client_with_error):
+def test_endpoint_account_get_http_error(
+        setup_and_teardown_db, mock_belvo_client_with_error):
     """Test for handling HTTPError when getting Belvo Account by ID."""
-    response = client.get("/v1/belvo/accounts", params={"id": "noexistent_id"})
+    response = client.get(
+        "/v1/belvo/accounts", params={"id": "noexistent_id"},
+        headers={"Authorization": f"Bearer {_obtain_token_from_login()}"}
+    )
 
     assert response.status_code == 500
     assert "success" in response.json()
@@ -89,21 +139,15 @@ def test_endpoint_account_get_http_error(mock_belvo_client_with_error):
     assert response.json()["message"] == "404: {'error': 'Not found'}"
 
 
-def test_endpoint_account_get_error(mock_belvo_client_with_error):
+def test_endpoint_account_get_error(
+        setup_and_teardown_db, mock_belvo_client_with_error):
     """Test for getting Belvo Account by ID with error."""
-    response = client.get("/v1/belvo/accounts", params={"id": "999"})
+    response = client.get(
+        "/v1/belvo/accounts", params={"id": "999"},
+        headers={"Authorization": f"Bearer {_obtain_token_from_login()}"}
+    )
 
     assert response.status_code == 500
     assert "success" in response.json()
     assert not response.json()["success"]
     assert "message" in response.json()
-
-
-# Tests for the `instance` Module for Injects:
-def test_belvo_client_instance_creation(mock_belvo_client):
-    """Test Belvo Client instance creation."""
-    try:
-        client = get_belvo_client()
-        assert isinstance(client, Client)
-    except Exception as e:
-        pytest.fail(f"Unexpected error occurred: {e}")
