@@ -3,6 +3,7 @@
 import pytest
 from src.belvo.client import Client
 from src.belvo.exceptions import BelvoException
+from src.belvo.instance import get_belvo_client
 
 
 @pytest.fixture
@@ -50,3 +51,13 @@ def test_client_resources_uses_same_session_as_client(resource_name):
     )
 
     assert client.session is getattr(client, resource_name).session
+
+
+# Tests for the `instance` Module for Injects:
+def test_belvo_client_instance_creation():
+    """Test Belvo Client instance creation."""
+    try:
+        client = get_belvo_client()
+        assert isinstance(client, Client)
+    except Exception as e:
+        pytest.fail(f"Unexpected error occurred: {e}")
