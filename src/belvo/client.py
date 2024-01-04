@@ -32,6 +32,7 @@ class Client:
         self._accounts = resources.Accounts(self.session)
         self._links = resources.Links(self.session)
         self._owners = resources.Owners(self.session)
+        self._transactions = resources.Transactions(self.session)
 
     @property
     def Accounts(self):
@@ -47,3 +48,8 @@ class Client:
     def Owners(self):
         """Get the Owners resource."""
         return self._owners
+
+    @property
+    def Transactions(self):
+        """Get the Transactions resource."""
+        return self._transactions

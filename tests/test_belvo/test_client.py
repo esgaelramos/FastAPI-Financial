@@ -42,6 +42,7 @@ def test_client_will_raise_exception_when_login_has_failed():
         "Accounts",
         "Links",
         "Owners",
+        "Transactions",
     ],
 )
 def test_client_resources_uses_same_session_as_client(resource_name):

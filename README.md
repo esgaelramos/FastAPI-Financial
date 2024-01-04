@@ -180,7 +180,7 @@ A list of tasks to complete the project.
 ### Preliminaries
 - [X] ~~Create a GitHub repository.~~
 - [X] ~~Create and register credentials for Belvo.~~
-- [ ] Read, understand, and implement Belvo's documentation.
+- [ ] **Read, understand, and implement Belvo's documentation.**
 - [X] ~~Take notes from Belvo's documentation.~~
 
 ### Project Architecture and Patterns Definition
@@ -191,7 +191,7 @@ A list of tasks to complete the project.
 - [X] Create project structure: 
     + ~~`src` and `tests`.~~
     + ~~follow the pattern design~~
-    + respect the architecture
+    + **respect the architecture**
 - [X] ~~Initialize a project with FastAPI.~~
 - [X] ~~Create a Dockerfile for Python.~~
 - [X] ~~Create a docker-compose file.~~
@@ -213,11 +213,11 @@ A list of tasks to complete the project.
 - [X] ~~Consider automatic deployment configuration in GitHub Actions.~~
 
 ### API and Database Development
-- [ ] Design database models for users, transactions, and categories.
+- [ ] Design database models for users, transactions, and categories?
 - [X] ~~Implement authentication and session management.~~
-- [ ] Develop endpoints for transaction lists, user listings, etc.
+- [X] ~~Develop endpoints for transaction lists, user listings, etc.~~
 - [X] ~~Integrate and test the connection with Belvo's API.~~
-- [ ] Implement logic for financial analysis (income and expenses).
+- [ ] Implement logic for financial analysis (income and expenses)?
 
 ### Optimization and Error Handling
 - [X] ~~Implement consistent error handling.~~
@@ -229,7 +229,7 @@ A list of tasks to complete the project.
 ### Final Evaluation and Improvements
 - [X] ~~Review code scalability and readability.~~
 - [X] ~~Perform final tests of the complete application.~~
-- [ ] Refine and improve based on feedback or test results.
+- [ ] **Refine and improve based on feedback or test results.**
 
 ### Project Documentation
 - [X] ~~Document all development steps and project configurations.~~
@@ -243,7 +243,7 @@ A list of tasks to complete the project.
 - [X] ~~Create subdomain and configure DNS.~~
 - [X] ~~Configure nginx like reverse proxy.~~
 - [X] ~~Configure SSL certificate (certbot).~~
-- [ ] Test and validate finished project.
+- [ ] **Test and validate finished project.**
 
 <br>
 
