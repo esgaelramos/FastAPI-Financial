@@ -39,6 +39,7 @@ def test_client_will_raise_exception_when_login_has_failed():
 @pytest.mark.parametrize(
     "resource_name",
     [
+        "Accounts",
         "Links",
         "Owners",
     ],

@@ -29,8 +29,14 @@ class Client:
         if not self.session.login(secret_key_id, secret_key_password):
             raise BelvoException("Login failed.")
 
+        self._accounts = resources.Accounts(self.session)
         self._links = resources.Links(self.session)
         self._owners = resources.Owners(self.session)
+
+    @property
+    def Accounts(self):
+        """Get the Accounts resource."""
+        return self._accounts
 
     @property
     def Links(self):
