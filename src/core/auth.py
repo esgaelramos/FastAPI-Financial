@@ -115,9 +115,6 @@ def register_new_user(user_data: UserRequest, db: Session) -> User:
     except Exception as e:
         logging.error(e)
         db.rollback()
-        return None
-
-    if new_user is None:
         raise HTTPException(
             status_code=500, detail="Error registering new user"
         )

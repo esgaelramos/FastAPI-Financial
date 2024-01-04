@@ -3,6 +3,8 @@
 A FastAPI project for managing financial data from Belvo's API. 
 The list of specifications is in the [Technical Test](.github/fordevs/TechnicalTest.md) file.
 
+[![codecov](https://codecov.io/gh/esgaelramos/FastAPI-Financial/graph/badge.svg?token=DTS5NKYAE6)](https://codecov.io/gh/esgaelramos/FastAPI-Financial)
+
 | [Installation](#installation)
 | [InstallDocker](#installation-docker)
 | [DesignPattern](#design-pattern)
